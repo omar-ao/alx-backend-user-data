@@ -1,22 +1,31 @@
 #!/usr/bin/env python3
-"""User Module"""
-from flask_sqlalchemy import SQLAlchemy
+"""
+Module for defining the User model for a database table 'users'.
+This module adheres to SQLAlchemy ORM and includes all necessary
+documentation, type annotations, and stylistic requirements.
+"""
+
+from sqlalchemy import Column, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
+
+Base = declarative_base()
 
 
-db = SQLAlchemy()
-
-
-class User(db.Model):
+class User(Base):
     """
-    User class
+    User model class for the 'users' table.
+    Defines the structure of the table and its attributes.
     """
     __tablename__ = 'users'
 
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(250), nullable=False)
-    hashed_password = db.Column(db.String(250), nullable=False)
-    session_id = db.Column(db.String(250), nullable=True)
-    reset_token = db.Column(db.String(250), nullable=True)
+    id: int = Column(Integer, primary_key=True)
+    email: str = Column(String, nullable=False)
+    hashed_password: str = Column(String, nullable=False)
+    session_id: str = Column(String, nullable=True)
+    reset_token: str = Column(String, nullable=True)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
+        """
+        Returns a string representation of the User instance.
+        """
         return f"<User id={self.id} email={self.email}>"

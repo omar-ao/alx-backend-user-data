@@ -23,9 +23,3 @@ class User(Base):
     hashed_password: str = Column(String, nullable=False)
     session_id: str = Column(String, nullable=True)
     reset_token: str = Column(String, nullable=True)
-
-    def __repr__(self) -> str:
-        """
-        Returns a string representation of the User instance.
-        """
-        return f"<User id={self.id} email={self.email}>"
